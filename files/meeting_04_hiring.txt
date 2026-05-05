@@ -1,0 +1,41 @@
+Meeting: Q4 Hiring Plan
+Date: 2025-09-23
+Attendees: Sara (CEO), Marc (CTO), Léa (PM)
+
+Sara: We have budget for three hires before end of year. I want to align on
+roles before we open recs.
+
+Marc: Engineering needs are clear. One senior backend engineer and one
+full-stack. The senior backend is the priority — David is drowning and Karim
+can't carry the platform alone once we ship.
+
+Léa: I'd push for a designer. We don't have one. The product looks like a
+2014 admin panel and our enterprise demos are suffering for it.
+
+Sara: Designer is fair. But three hires, two engineers and a designer, leaves
+nothing for sales or support.
+
+Marc: Yann is fine alone for another quarter. He's closing deals. The
+bottleneck is product quality and engineering throughput, not pipeline.
+
+Sara: Okay. Decision: three Q4 hires — one senior backend engineer, one
+full-stack engineer, one product designer. Marc owns the engineering recs, I'll
+own the designer search through my network first before we go to recruiters.
+
+Léa: Timeline?
+
+Sara: Senior backend posted this week. Full-stack two weeks after. Designer in
+parallel. I want all three offers out by end of November, starts no later than
+mid-January.
+
+Marc: Comp bands?
+
+Sara: Same as the last round. We're not breaking the bands without a board
+conversation.
+
+Léa: What about levels? Are we hiring staff-level or just senior?
+
+Marc: Senior. Staff is too expensive and we're not at the scale where they'd
+have enough to do.
+
+Sara: Agreed. Senior cap.

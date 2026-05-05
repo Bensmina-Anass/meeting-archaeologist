@@ -1,0 +1,43 @@
+Meeting: Q4 Product Roadmap
+Date: 2025-10-07
+Attendees: Sara (CEO), Léa (PM), Marc (CTO), Yann (Sales)
+
+Léa: I've consolidated the Q4 roadmap based on customer interviews and what
+sales is hearing. Three big rocks: SSO and SAML for enterprise, an audit log
+feature, and a basic reporting dashboard.
+
+Yann: SSO is the one I keep getting blocked on. Three deals are stuck behind
+it right now.
+
+Marc: Auth0 gives us SSO and SAML essentially for free, we just need to wire
+up the UI for tenant configuration. That's maybe two weeks of frontend work.
+
+Sara: Audit log?
+
+Léa: Enterprise compliance requirement. Every action a user takes in the
+system needs to be logged with timestamp, actor, and resource. Searchable for
+at least 90 days.
+
+Marc: Three weeks of work. We need a separate write path that doesn't slow
+down the main request flow.
+
+Sara: Reporting dashboard?
+
+Léa: Customers want to see usage, active users, key workflows completed. It's
+the lightest of the three but it's also the one that drives expansion
+conversations because once they see usage they want more seats.
+
+Sara: Sequencing?
+
+Léa: SSO first because it unblocks revenue. Audit log second because it
+unblocks the next tier of deals. Dashboard third.
+
+Marc: I can put two engineers on SSO immediately.
+
+Sara: Decision: Q4 priorities are SSO, audit log, reporting dashboard, in
+that order. Léa owns the spec for each, Marc owns delivery. Target: SSO live
+by end of October, audit log mid-November, dashboard by mid-December.
+
+Yann: I'll tell the three stuck deals SSO is end of October.
+
+Sara: Tell them early November to be safe. Don't promise the aggressive date.

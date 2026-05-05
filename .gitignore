@@ -1,0 +1,12 @@
+.env
+__pycache__/
+data/audio/*.mp3
+data/audio/__pycache__/
+.venv/
+*.db
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+*.egg-info/

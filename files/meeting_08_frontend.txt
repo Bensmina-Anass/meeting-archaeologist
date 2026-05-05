@@ -1,0 +1,44 @@
+Meeting: Frontend Stack Decision
+Date: 2025-10-21
+Attendees: Marc (CTO), David (Eng Lead), Inès (Frontend Eng)
+
+Marc: We delayed this long enough. Inès, you're starting Monday. We need to
+decide what you're building on.
+
+Inès: I've spent the week catching up. The current frontend is a Create React
+App from 2023, no SSR, no real component library, Tailwind is half wired up.
+It's not awful but it won't scale to where you want to be.
+
+David: Migration or rebuild?
+
+Inès: Migration. There's enough working code that a rebuild is wasteful, but
+we need to move to Next.js with the App Router and adopt a real component
+library. I'd recommend shadcn/ui — not a dependency, just a pattern, which
+means we own the components and can theme them properly.
+
+Marc: TypeScript strict mode?
+
+Inès: Non-negotiable. The current codebase has strict off and there are dozens
+of "any" types that will bite us. I'll migrate gradually, file by file.
+
+David: State management?
+
+Inès: React Query for server state, Zustand for client state. No Redux. The
+Redux boilerplate is not worth it at our scale.
+
+Marc: Testing?
+
+Inès: Playwright for end-to-end, Vitest for unit. Skip Jest, Vitest is faster
+and the migration is trivial.
+
+Marc: Decision: migrate to Next.js App Router with TypeScript strict, shadcn
+component patterns, React Query plus Zustand, Playwright and Vitest for
+testing. Inès owns the migration plan and timeline.
+
+Inès: I'll have a phased plan by end of next week. My instinct is six to
+eight weeks for the bulk, with the last 20 percent dragging into Q1.
+
+David: That's fine. Don't block feature work — migrate route by route as
+features get touched.
+
+Inès: Agreed. Big-bang rewrites are how startups die.

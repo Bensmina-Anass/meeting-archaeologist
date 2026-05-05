@@ -1,0 +1,40 @@
+Meeting: Pricing Model Review
+Date: 2025-09-09
+Attendees: Sara (CEO), Léa (PM), David (Eng Lead), Yann (Sales)
+
+Sara: We need to settle on the pricing model before the sales team starts the
+outbound push next week. Yann, where are we?
+
+Yann: The market is split. Half our competitors do per-seat, half do
+usage-based. Our prospects keep asking which one we are, and right now I don't
+have a clean answer.
+
+Léa: Per-seat is simpler to sell. Procurement understands it. Usage-based has
+better expansion economics but the sales cycle gets longer because finance teams
+hate variable bills.
+
+David: From an engineering perspective, usage-based requires us to build
+metering infrastructure now, not later. That's three to four weeks of work we
+haven't budgeted.
+
+Sara: What's the customer feedback been?
+
+Yann: Mid-market wants per-seat. Enterprise is fine with either, but a few of
+the bigger prospects actually prefer usage-based because they can start small
+and grow without a procurement cycle every time.
+
+Sara: Okay. Let's go per-seat for launch. We hit the easier sales motion first,
+get to revenue faster, and we can layer usage-based as a second tier in Q2 once
+we have real data on how customers consume the product.
+
+Léa: Tiers?
+
+Sara: Three tiers. Starter, Growth, Enterprise. Yann, you and Léa work out the
+exact pricing this week. Decision: per-seat pricing for launch, three tiers,
+usage-based deferred to Q2.
+
+Yann: Understood. I'll have a draft pricing sheet by Friday.
+
+David: I'll deprioritize the metering work then.
+
+Sara: Yes. Don't build it until we commit to Q2 usage-based.

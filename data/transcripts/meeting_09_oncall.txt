@@ -1,0 +1,46 @@
+Meeting: On-Call & Observability
+Date: 2025-10-28
+Attendees: Marc (CTO), David (Eng Lead), Karim (Backend Eng)
+
+Marc: We had two incidents last week that nobody noticed for over an hour. We
+don't have a real on-call setup. Time to fix it.
+
+David: What we have now is whoever happens to see the Slack alert. That's not
+on-call, that's hope.
+
+Karim: I propose PagerDuty for paging, Datadog for metrics and logs, Sentry
+for error tracking. Datadog is expensive but it's the one tool I won't
+compromise on — the alternatives are noticeably worse.
+
+Marc: Cost?
+
+Karim: Datadog at our scale is around 1.5k a month and it grows with hosts.
+PagerDuty is 21 dollars per user per month, so call it 250 a month for the
+team. Sentry is 80 a month on the team plan.
+
+David: Rotation?
+
+Marc: Weekly, four engineers in the rotation — David, Karim, me, and the new
+senior backend hire when they start. One primary, one secondary.
+
+Karim: SLOs?
+
+Marc: 99.5 percent for the API in year one. We're not promising 99.9 until we
+have the maturity to back it. Page on SLO burn rate, not on individual error
+spikes. Otherwise the on-call gets paged constantly and learns to ignore
+alerts.
+
+David: Runbooks?
+
+Karim: I'll write the first three for the most common incident types this
+week. Everyone in the rotation contributes one runbook before their first
+shift.
+
+Marc: Decision: PagerDuty plus Datadog plus Sentry, weekly rotation of four
+engineers, 99.5 percent API SLO, alert on burn rate not spikes, runbooks
+mandatory before first shift. Karim owns tooling setup, David owns rotation
+schedule and runbook standards.
+
+David: Compensation for on-call?
+
+Marc: Flat 200 euros per week of primary. We'll revisit when the team grows.

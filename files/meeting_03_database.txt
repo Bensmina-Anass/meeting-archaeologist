@@ -1,0 +1,42 @@
+Meeting: Database & Infrastructure
+Date: 2025-09-16
+Attendees: Marc (CTO), David (Eng Lead), Karim (Backend Eng)
+
+Marc: We need to commit on the database before David starts the schema work
+next week. Karim, you wrote up the comparison.
+
+Karim: Yeah. Three options: Postgres on RDS, Postgres on Supabase, or going
+straight to Aurora. I've ruled out Mongo, we don't have a document use case.
+
+David: What's the recommendation?
+
+Karim: Postgres on RDS. Supabase is great for prototypes but their pricing gets
+weird at scale and we lose control over the underlying instance. Aurora is
+overkill for our load profile in year one and it locks us into AWS more deeply
+than we want.
+
+Marc: Multi-AZ from day one?
+
+Karim: Yes. Single-AZ saves maybe 80 dollars a month and we lose all credibility
+the first time we have a 4-hour outage. Multi-AZ, automated backups, point-in-
+time recovery enabled.
+
+David: pgvector? We talked about adding semantic search later.
+
+Karim: RDS supports the pgvector extension natively now. We can enable it when
+we need it, no migration required.
+
+Marc: Good. Decision: Postgres on RDS, multi-AZ, automated backups, pgvector
+available when we need it. Karim owns the setup. Target: provisioned and
+schema-migrated by end of next week.
+
+Karim: I'll have it up by Wednesday.
+
+David: I'll start the schema PRs against it Thursday.
+
+Marc: One more thing — we are not running a separate analytics database for at
+least the next year. Everything runs on the same Postgres until we have a real
+reason to split.
+
+David: Agreed. Premature splitting is how teams burn six months on data
+plumbing.

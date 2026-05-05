@@ -1,0 +1,6 @@
+[project]
+name = "meeting-archaeologist"
+requires-python = ">=3.11"
+dependencies = [
+    "edge-tts>=7.0",
+]

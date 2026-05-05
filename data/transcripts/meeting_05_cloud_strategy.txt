@@ -1,0 +1,50 @@
+Meeting: Cloud & Deployment Strategy
+Date: 2025-09-30
+Attendees: Marc (CTO), David (Eng Lead), Karim (Backend Eng), Sara (CEO)
+
+Marc: Today we lock the cloud strategy. We've been deferring this and it's
+starting to block decisions downstream. Karim, you led the analysis.
+
+Karim: Right. The question is single-cloud versus multi-cloud, and which
+provider. I evaluated AWS, GCP, and a multi-cloud setup using Kubernetes as
+the abstraction layer.
+
+David: And?
+
+Karim: Single-cloud on AWS. Strong recommendation.
+
+Sara: Walk me through the reasoning. I keep hearing from advisors that
+multi-cloud is the safer bet.
+
+Karim: It's safer in theory and worse in practice. Multi-cloud doubles our
+operational surface area. We'd need to maintain two sets of IAM policies, two
+networking models, two billing accounts, two on-call playbooks. For a team of
+twelve, that's a tax we cannot afford. The "vendor lock-in" risk people quote
+is real but it's a five-year problem, not a year-one problem.
+
+Marc: AWS specifically because?
+
+Karim: Three reasons. One, our team has the most AWS experience — David and I
+have both shipped production systems on it. Two, our enterprise customers
+overwhelmingly run on AWS, and being in the same cloud simplifies private
+networking, PrivateLink, data residency conversations. Three, RDS, the
+database we already committed to, is best-in-class on AWS.
+
+David: I want to flag one thing. We are explicitly saying no to GCP for now,
+even though their data and ML tooling is better. That is a real tradeoff.
+
+Marc: Acknowledged. If we ever build a serious ML pipeline we revisit. But
+that's a year-two problem at the earliest.
+
+Sara: Okay. Decision: we are single-cloud on AWS. No multi-cloud, no GCP
+workloads, no Kubernetes-as-abstraction. We commit fully to AWS-native
+services where they make sense — RDS, ECS, S3, CloudFront. Karim owns the
+account structure.
+
+Karim: I'll have the org structure and baseline accounts set up within two
+weeks.
+
+Marc: And David, this means the deployment tooling discussion is closed.
+ECS with Fargate, not Kubernetes.
+
+David: Confirmed. I'll kill the EKS spike.
