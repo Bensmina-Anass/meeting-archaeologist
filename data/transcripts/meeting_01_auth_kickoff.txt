@@ -2,38 +2,25 @@ Meeting: Auth System Kickoff
 Date: 2025-09-02
 Attendees: Sara (CEO), Marc (CTO), Léa (PM), David (Eng Lead)
 
-Sara: Alright, let's lock down the auth approach for the B2B platform. We've been
-going back and forth for two weeks. I want a decision today.
+Sara: Alright, let's lock down the auth approach for the B2B platform. We've been going back and forth for two weeks. I want a decision today.
 
-Marc: I've looked at the options. We have three realistic paths: build it ourselves
-on top of Passport, use Auth0, or use Clerk. My recommendation is Auth0.
+Marc: I've looked at the options. We have three realistic paths: build it ourselves on top of Passport, use Auth0, or use Clerk. My recommendation is Auth0.
 
 David: Why not build? We have the team for it.
 
-Marc: Because we're a 12-person company and auth is not our differentiator. Every
-hour we spend on password reset flows is an hour we're not spending on the actual
-product. Auth0 gives us SSO, SAML, MFA, and audit logs out of the box. Our
-enterprise customers will demand all of that within six months.
+Marc: Because we're a 12-person company and auth is not our differentiator. Every hour we spend on password reset flows is an hour we're not spending on the actual product. Auth0 gives us SSO, SAML, MFA, and audit logs out of the box. Our enterprise customers will demand all of that within six months.
 
 Léa: What's the cost story?
 
-Marc: Auth0 starts at around 240 dollars a month for the B2B essentials tier, and
-it scales with active users. By year two we're probably looking at 2k a month,
-maybe more. Clerk is cheaper but their SAML support is weaker and that's a
-dealbreaker for enterprise.
+Marc: Auth0 starts at around 240 dollars a month for the B2B essentials tier, and it scales with active users. By year two we're probably looking at 2k a month, maybe more. Clerk is cheaper but their SAML support is weaker and that's a dealbreaker for enterprise.
 
 Sara: And migration risk if we change later?
 
-Marc: Real but manageable. We abstract the auth layer behind our own service so
-swapping providers is contained. I'd rather pay the Auth0 tax now than burn three
-engineers for two months building something that will be worse.
+Marc: Real but manageable. We abstract the auth layer behind our own service so swapping providers is contained. I'd rather pay the Auth0 tax now than burn three engineers for two months building something that will be worse.
 
 David: Fine, I'm convinced. Auth0 it is.
 
-Sara: Good. Decision: we go with Auth0 for authentication. Marc owns the
-integration. Target is to have it live in staging by end of September. Léa, can
-you make sure the enterprise customer requirements doc reflects what Auth0 gives
-us for free?
+Sara: Good. Decision: we go with Auth0 for authentication. Marc owns the integration. Target is to have it live in staging by end of September. Léa, can you make sure the enterprise customer requirements doc reflects what Auth0 gives us for free?
 
 Léa: On it.
 

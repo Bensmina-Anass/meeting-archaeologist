@@ -6,8 +6,8 @@ from pathlib import Path
 
 import edge_tts
 
-TRANSCRIPTS_DIR = Path(__file__).parent.parent / "transcripts"
-AUDIO_DIR = Path(__file__).parent
+TRANSCRIPTS_DIR = Path(__file__).parent.parent / "data" / "transcripts"
+AUDIO_DIR = Path(__file__).parent.parent / "data" / "audio"
 
 # One voice per speaker
 SPEAKER_VOICES: dict[str, str] = {
