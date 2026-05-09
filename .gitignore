@@ -1,4 +1,3 @@
-.env
 __pycache__/
 data/audio/*.mp3
 data/audio/__pycache__/
