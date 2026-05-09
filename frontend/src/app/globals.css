@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #edffec;
+  color: #004e64;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paper-grain texture overlay */
+.paper-grain {
+  background-image: radial-gradient(
+      1px 1px at 25% 35%,
+      rgba(0, 78, 100, 0.04) 50%,
+      transparent 51%
+    ),
+    radial-gradient(
+      1px 1px at 75% 65%,
+      rgba(0, 78, 100, 0.035) 50%,
+      transparent 51%
+    ),
+    radial-gradient(
+      1px 1px at 50% 80%,
+      rgba(0, 78, 100, 0.03) 50%,
+      transparent 51%
+    );
+  background-size: 40px 40px, 60px 60px, 30px 30px;
+}
+
+/* Custom scrollbars */
+.nice-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.nice-scroll::-webkit-scrollbar-thumb {
+  background: rgba(150, 137, 123, 0.35);
+  border-radius: 999px;
+}
+.nice-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* fadeUp entrance */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.anim-fadeup {
+  animation: fadeUp 240ms ease-out both;
+}
+
+/* Skeleton pulse */
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+.skeleton-pulse {
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}

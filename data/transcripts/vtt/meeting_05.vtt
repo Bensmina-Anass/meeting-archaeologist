@@ -1,0 +1,80 @@
+WEBVTT
+
+NOTE Meeting: Platform Architecture Review — 2025-04-21
+NOTE Attendees: Sara Chen (CEO), Léa Martin (PM), David Okafor (Eng Lead)
+NOTE Marc Dubois is not attending (medical leave).
+
+00:00:00.000 --> 00:00:09.500
+<v Sara Chen>Marc is still out. David, you're leading the architecture discussion today. Three items on the agenda?
+
+00:00:58.000 --> 00:01:10.800
+<v David Okafor>Right. Deployment model as we scale, service-to-service communication, and repository structure for the new hires starting in July.
+
+00:01:52.000 --> 00:02:03.200
+<v Léa Martin>I want to make sure we're building something the team can actually operate. What's the deployment model you're proposing?
+
+00:02:48.000 --> 00:03:01.500
+<v David Okafor>Kubernetes. Specifically, EKS as our primary cluster on AWS. For disaster recovery and load distribution, we add a GCP GKE cluster as a secondary.
+
+00:03:42.000 --> 00:03:53.800
+<v Sara Chen>Walk me through the DR story. What actually happens if EKS has an outage?
+
+00:04:35.000 --> 00:04:48.200
+<v David Okafor>Traffic shifts to GKE automatically via DNS failover. RTO under fifteen minutes. The databases stay on AWS RDS — we're only moving compute. Failover gets pre-tested monthly.
+
+00:05:28.000 --> 00:05:38.500
+<v Léa Martin>What does this mean for the engineers we're hiring? Do they need Kubernetes expertise going in?
+
+00:06:20.000 --> 00:06:32.800
+<v David Okafor>Yes, and that's intentional. Kubernetes is the industry standard now. Any senior backend engineer we hire should know it. I'm treating it as a filter in the interview process.
+
+00:07:12.000 --> 00:07:21.500
+<v Sara Chen>I'm comfortable with that. Léa?
+
+00:08:04.000 --> 00:08:14.800
+<v Léa Martin>Fine from a product standpoint. As long as rollouts stay invisible to customers, I don't care about the plumbing.
+
+00:08:57.000 --> 00:09:08.200
+<v Sara Chen>Agreed. We'll run EKS as primary with a GCP GKE cluster for disaster recovery. Standard Kubernetes everywhere.
+
+00:09:50.000 --> 00:10:04.500
+<v David Okafor>Decision: Kubernetes-based multi-cloud deployment, EKS primary, GCP GKE for disaster recovery. David owns the cluster setup. I'll have the first cluster running in the staging environment by end of sprint.
+
+00:10:42.000 --> 00:10:52.800
+<v Sara Chen>Good. Service-to-service communication. We have four services scoped for the first half of the year. What's the model?
+
+00:11:35.000 --> 00:11:47.200
+<v David Okafor>Istio as the service mesh. Mutual TLS between services automatically, circuit breaking, traffic shaping. We get observability for free — no custom middleware.
+
+00:12:28.000 --> 00:12:37.500
+<v Léa Martin>Does Istio add latency? I remember it coming up in a past conversation as a concern.
+
+00:13:20.000 --> 00:13:32.800
+<v David Okafor>A few milliseconds per hop in the worst case, negligible against database roundtrips. The security and observability gains are worth it by a wide margin.
+
+00:14:12.000 --> 00:14:21.500
+<v Sara Chen>Decision: Istio for inter-service traffic. David owns the initial configuration.
+
+00:15:04.000 --> 00:15:14.800
+<v David Okafor>Last item: repository structure. We're about to onboard two engineers. Monorepo or polyrepo?
+
+00:15:57.000 --> 00:16:07.200
+<v Sara Chen>My instinct is monorepo. Shared libraries, atomic commits across services, easier code review — especially at our size.
+
+00:16:50.000 --> 00:17:02.500
+<v David Okafor>I agree. We use Turborepo for the build layer. It handles caching and dependency graphs well. New engineers can clone one repo and be running in an hour.
+
+00:17:43.000 --> 00:17:53.800
+<v Léa Martin>Monorepo makes sense. Polyrepo gets complicated fast when you have shared models between services and no one knows which repo has the canonical version.
+
+00:18:36.000 --> 00:18:49.200
+<v Sara Chen>Agreed. Monorepo with Turborepo for builds. David sets it up before the new hires start. That's all three. Good session.
+
+00:19:30.000 --> 00:19:40.500
+<v David Okafor>I'll have a draft architecture doc for Marc to review next week. He'll want to see the Kubernetes plan before we go too far.
+
+00:20:22.000 --> 00:20:32.800
+<v Léa Martin>I'll send him a summary of the decisions so he's not blindsided when he's back.
+
+00:21:15.000 --> 00:21:23.500
+<v Sara Chen>Good. I'll brief him one-on-one before the team sees the architecture doc.

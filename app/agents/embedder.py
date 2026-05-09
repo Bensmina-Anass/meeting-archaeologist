@@ -5,7 +5,7 @@ import os
 from google import genai
 from google.genai import types
 
-MODEL = "text-embedding-004"
+MODEL = "gemini-embedding-001"
 
 
 def _make_client() -> genai.Client:
@@ -13,9 +13,10 @@ def _make_client() -> genai.Client:
 
 
 def embed_text(text: str) -> list[float]:
-    response = _make_client().models.embed_content(
+    client = _make_client()
+    response = client.models.embed_content(
         model=MODEL,
         contents=text,
-        config=types.EmbedContentConfig(task_type="SEMANTIC_SIMILARITY"),
+        config=types.EmbedContentConfig(task_type="SEMANTIC_SIMILARITY", output_dimensionality=768),
     )
     return list(response.embeddings[0].values)

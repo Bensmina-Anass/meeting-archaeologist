@@ -1,0 +1,13 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+.env
+.env.*
+!.env.example
+frontend/
+data/
+tests/
+evals/
+scripts/
+*.egg-info

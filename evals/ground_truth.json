@@ -1,0 +1,47 @@
+[
+  {
+    "transcript_id": "meeting_01_auth_kickoff",
+    "expected_decisions": [
+      {
+        "topic_slug": "authentication_provider",
+        "summary": "Adopted Auth0 as the authentication provider, rejecting in-house development and Clerk.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara: Good. Decision: we go with Auth0 for authentication. Marc owns the integration."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_02_pricing",
+    "expected_decisions": [
+      {
+        "topic_slug": "pricing_model",
+        "summary": "Adopted per-seat pricing at launch with three tiers (Starter, Growth, Enterprise), deferring usage-based pricing to Q2.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara: Three tiers. Starter, Growth, Enterprise. Decision: per-seat pricing for launch, three tiers, usage-based deferred to Q2."
+      },
+      {
+        "topic_slug": "metering_infrastructure",
+        "summary": "Metering infrastructure work deprioritized and deferred until Q2 usage-based pricing is formally committed.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara: Yes. Don't build it until we commit to Q2 usage-based."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_03_database",
+    "expected_decisions": [
+      {
+        "topic_slug": "database_infrastructure",
+        "summary": "Selected Postgres on RDS with multi-AZ failover, automated backups, and pgvector extension available on demand.",
+        "confidence": "explicit",
+        "verbatim_quote": "Marc: Good. Decision: Postgres on RDS, multi-AZ, automated backups, pgvector available when we need it."
+      },
+      {
+        "topic_slug": "analytics_database",
+        "summary": "Decided against running a separate analytics database for at least one year; all workloads stay on the primary Postgres instance.",
+        "confidence": "implied",
+        "verbatim_quote": "Marc: One more thing — we are not running a separate analytics database for at least the next year. Everything runs on the same Postgres until we have a real reason to split."
+      }
+    ]
+  }
+]

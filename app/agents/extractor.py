@@ -11,28 +11,47 @@ MODEL = "gemini-2.5-flash"
 
 
 def _make_client() -> instructor.Instructor:
-    return instructor.from_gemini(
+    return instructor.from_genai(
         client=genai.Client(api_key=os.environ["GOOGLE_API_KEY"]),
-        mode=instructor.Mode.GEMINI_TOOLS,
+        mode=instructor.Mode.GENAI_TOOLS,
     )
 
 
-def extract_meeting(transcript_text: str, meeting_id: str) -> MeetingExtraction:
+def extract_meeting(
+    transcript_text: str,
+    meeting_id: str,
+    existing_topics: list[tuple[str, str]] | None = None,
+) -> MeetingExtraction:
     client = _make_client()
     result: MeetingExtraction = client.chat.completions.create(
         model=MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {
-                "role": "user",
-                "content": USER_PROMPT_TEMPLATE.format(transcript_text=transcript_text),
-            },
+            {"role": "user", "content": _build_user_message(transcript_text, existing_topics)},
         ],
         response_model=MeetingExtraction,
-        temperature=0,
-        max_retries=3,
+        max_retries=1,
     )
     return result.model_copy(update={"meeting_id": meeting_id})
+
+
+def _build_user_message(
+    transcript_text: str,
+    existing_topics: list[tuple[str, str]] | None,
+) -> str:
+    parts: list[str] = []
+    if existing_topics:
+        lines = "\n".join(f"- {slug} — {display}" for slug, display in existing_topics)
+        parts.append(
+            "Existing topics in this team's history — reuse the exact slug if the "
+            "decision relates to that concept. Only invent a new slug if the concept "
+            "is genuinely not covered by any entry below:\n" + lines
+        )
+    parts.append(
+        "Extract all decisions from the following meeting transcript.\n\n"
+        "<transcript>\n" + transcript_text + "\n</transcript>"
+    )
+    return "\n\n".join(parts)
 
 
 SYSTEM_PROMPT = """\
@@ -77,6 +96,9 @@ topic (the most important field):
     "which_cloud_provider_to_use" will not.
   - Use the most general stable label for the concept, not a description of this \
     meeting's specific fork
+  - If the user message includes a list of existing team topics, you MUST reuse the \
+    exact slug when the decision relates to that concept. Only invent a new slug if \
+    the concept is genuinely absent from the list.
 
 verbatim_quote:
   - Copy the sentence(s) EXACTLY as they appear in the transcript, character for character
@@ -168,10 +190,3 @@ work stream counts.
 </examples>
 """
 
-USER_PROMPT_TEMPLATE = """\
-Extract all decisions from the following meeting transcript.
-
-<transcript>
-{transcript_text}
-</transcript>
-"""

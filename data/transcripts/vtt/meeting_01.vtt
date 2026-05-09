@@ -1,0 +1,88 @@
+WEBVTT
+
+NOTE Meeting: Q2 Product Kickoff — 2025-02-10
+NOTE Attendees: Sara Chen (CEO), Marc Dubois (CTO), Léa Martin (PM), David Okafor (Eng Lead)
+
+00:00:00.000 --> 00:00:08.200
+<v Sara Chen>Good morning everyone. Welcome to the Q2 kickoff. Quick round-table before we get into it.
+
+00:00:55.000 --> 00:01:02.500
+<v Marc Dubois>Morning Sara. Engineering side is set. Ready for the sprint structure discussion.
+
+00:01:50.000 --> 00:01:58.800
+<v Léa Martin>I've got the feature backlog ranked by user value. Should take maybe twenty minutes to work through.
+
+00:02:45.000 --> 00:02:52.500
+<v David Okafor>Same here. I wanted to flag the sprint cadence question before we get too far in.
+
+00:03:38.000 --> 00:03:47.200
+<v Sara Chen>Good, let's start there. David, give me your take on two-week versus three-week sprints.
+
+00:04:30.000 --> 00:04:40.500
+<v David Okafor>Two weeks. Tighter feedback loops. We catch drift before it compounds, and it keeps the team honest about scope.
+
+00:05:22.000 --> 00:05:33.800
+<v Marc Dubois>Agreed. Three weeks is too long without a checkpoint at our stage. We'd be planning before we knew if last sprint even landed.
+
+00:06:15.000 --> 00:06:24.200
+<v Léa Martin>And bi-weekly aligns with our customer check-ins. We can actually show them real progress each time.
+
+00:07:05.000 --> 00:07:13.500
+<v Sara Chen>Good. Decision: two-week sprints, starting Monday the seventeenth.
+
+00:07:55.000 --> 00:08:04.800
+<v Marc Dubois>What's first in the queue? I want engineering to start scoping immediately.
+
+00:08:48.000 --> 00:08:58.200
+<v Léa Martin>Auth and user management. It's the blocker for every other feature. Permissions, invite flows, none of it works without a user model.
+
+00:09:40.000 --> 00:09:50.500
+<v David Okafor>I'd agree. We cannot test invite flows or role checks without auth in place. It's genuinely blocking.
+
+00:10:32.000 --> 00:10:40.800
+<v Sara Chen>Marc, is auth realistic as sprint one priority? I don't want to overcommit the team.
+
+00:11:22.000 --> 00:11:34.500
+<v Marc Dubois>Yes. Login, logout, basic RBAC, Auth0 integration. Well-scoped for one sprint, two at most. David holds the backend while I spec the token model.
+
+00:12:15.000 --> 00:12:23.800
+<v Sara Chen>Agreed. Decision: auth and user management is our first feature. Sprints one and two.
+
+00:13:05.000 --> 00:13:15.200
+<v Léa Martin>Quick note on scope — I'm thinking three roles for now: admin, editor, viewer. Custom roles are a v2 conversation.
+
+00:13:55.000 --> 00:14:06.500
+<v Marc Dubois>Three roles is exactly right. Don't overbuild RBAC. Every enterprise customer wants custom roles and we'll never satisfy all of them upfront.
+
+00:14:48.000 --> 00:14:58.800
+<v David Okafor>Agreed on three roles. I'll write the backend schema this week. Extensible design so we can add granularity later without a migration nightmare.
+
+00:15:40.000 --> 00:15:50.200
+<v Sara Chen>Good. What's after auth in the roadmap queue?
+
+00:16:30.000 --> 00:16:42.500
+<v Léa Martin>Workflow builder is next — that's the core product. After that, the inbox and notification layer. I'll share the full ranked doc after this call.
+
+00:17:22.000 --> 00:17:30.800
+<v Marc Dubois>I need the workflow builder spec before sprint three. That's where the real technical complexity lives.
+
+00:18:12.000 --> 00:18:22.500
+<v Léa Martin>Spec will be ready by end of sprint one. Functional requirements written before David's team needs to pick it up.
+
+00:19:02.000 --> 00:19:11.800
+<v Sara Chen>Last item: daily standup time. The team poll landed on nine-thirty — does that work for everyone?
+
+00:19:52.000 --> 00:20:01.200
+<v David Okafor>Works for me. Before the deep-work block and gives me time to check overnight CI first.
+
+00:20:42.000 --> 00:20:49.500
+<v Marc Dubois>Fine by me. Nine is too early when I'm reviewing PRs until late.
+
+00:21:32.000 --> 00:21:44.800
+<v Sara Chen>Nine-thirty it is. Daily standup, nine-thirty AM, starting Monday. Léa will send the invite.
+
+00:22:22.000 --> 00:22:31.500
+<v Léa Martin>On it. I'll also block the sprint review cadence — Fridays at end of sprint, same group.
+
+00:23:12.000 --> 00:23:20.800
+<v Sara Chen>Perfect. Two-week sprints, auth first, standup nine-thirty. Good session everyone.

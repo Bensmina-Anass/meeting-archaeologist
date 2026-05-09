@@ -1,0 +1,74 @@
+WEBVTT
+
+NOTE Meeting: Cloud Infrastructure Planning — 2025-03-17
+NOTE Attendees: Sara Chen (CEO), Marc Dubois (CTO), David Okafor (Eng Lead)
+NOTE Léa Martin is not attending today.
+
+00:00:00.000 --> 00:00:09.500
+<v Sara Chen>Alright. Today we settle the cloud strategy. Marc, you've done the analysis — walk us through it.
+
+00:01:05.000 --> 00:01:17.800
+<v Marc Dubois>Sure. I evaluated three paths: AWS only, GCP only, and multi-cloud from the start. My recommendation is single-cloud AWS.
+
+00:02:05.000 --> 00:02:18.500
+<v Marc Dubois>AWS ecosystem is mature, our engineers know it, and managed service coverage is unmatched. ECS for containers, RDS for Postgres, S3 for storage. Boring stack, high reliability.
+
+00:03:00.000 --> 00:03:10.800
+<v David Okafor>What about vendor lock-in? That comes up every time we do a pricing review with the board.
+
+00:03:58.000 --> 00:04:12.500
+<v Marc Dubois>Lock-in is real but overrated at our scale. We're twelve people. Abstracting across two clouds costs more than the lock-in risk. We'd need a dedicated platform team to manage multi-cloud. We don't have that and won't for at least two years.
+
+00:04:55.000 --> 00:05:08.200
+<v Sara Chen>I agree with that logic. Multi-cloud is a tax we cannot afford right now. What does AWS-only actually mean for our stack day one?
+
+00:05:52.000 --> 00:06:04.500
+<v David Okafor>EC2 or ECS for compute, RDS for Postgres, S3 for storage, CloudFront for CDN. Nothing exotic. I can have a working environment provisioned in under a week.
+
+00:06:48.000 --> 00:07:00.800
+<v Marc Dubois>Exactly. And with the AWS startup credits program, we'll have eighteen months of runway before cloud costs become a real budget conversation.
+
+00:07:42.000 --> 00:07:52.500
+<v Sara Chen>Good. Decision: we go all-in on AWS. Single-cloud strategy. Marc owns the infrastructure setup.
+
+00:08:38.000 --> 00:08:48.800
+<v David Okafor>What about the database specifically? I assume Postgres, but let's say it explicitly so new engineers don't have to guess.
+
+00:09:35.000 --> 00:09:50.200
+<v Marc Dubois>Postgres on RDS. Multi-AZ for high availability, automated backups enabled, point-in-time recovery configured. Already scoped last month. pgvector extension available when we need embeddings down the road.
+
+00:10:28.000 --> 00:10:38.500
+<v David Okafor>Multi-AZ is the right call. We don't want the database to be a single point of failure on day one of production traffic.
+
+00:11:22.000 --> 00:11:31.800
+<v Sara Chen>Confirmed then. Decision: Postgres on RDS, multi-AZ, automated backups. Marc owns that setup.
+
+00:12:18.000 --> 00:12:28.500
+<v David Okafor>CI/CD? I want to land on a toolchain before we start hiring. New engineers need to hit the ground running.
+
+00:13:12.000 --> 00:13:25.800
+<v Marc Dubois>GitHub Actions. We're already on GitHub, the marketplace has everything we need, and the free tier covers us easily. No extra tooling to maintain, no vendor to manage.
+
+00:14:05.000 --> 00:14:16.500
+<v David Okafor>Agreed. Clean, simple. I can set up the initial pipeline — build, lint, test, deploy to ECS — this sprint.
+
+00:14:58.000 --> 00:15:06.800
+<v Sara Chen>Decision: GitHub Actions for CI/CD. David owns the initial setup.
+
+00:15:52.000 --> 00:16:05.500
+<v Marc Dubois>One more thing on environments. I'd propose three: dev, staging, and production. Staging should be a near-replica of prod — same instance types, same services, different credentials.
+
+00:16:48.000 --> 00:17:00.800
+<v David Okafor>Three environments makes sense. Staging on t3 instead of m5 for cost, but same OS, same services, same config structure. No surprises before a deploy.
+
+00:17:42.000 --> 00:17:51.500
+<v Sara Chen>Good. Anything else on the infrastructure side before we close?
+
+00:18:38.000 --> 00:18:52.200
+<v Marc Dubois>Single-cloud, AWS only. No GCP, no Azure. Simplicity over redundancy at this stage. We revisit only when we hit real scaling constraints. I'll write the ADR this week.
+
+00:19:32.000 --> 00:19:40.500
+<v David Okafor>I'll start the Terraform scaffolding today. Should have a working VPC and the first RDS instance up by Thursday.
+
+00:20:25.000 --> 00:20:33.800
+<v Sara Chen>Perfect. That wraps cloud infrastructure. Good work both of you.

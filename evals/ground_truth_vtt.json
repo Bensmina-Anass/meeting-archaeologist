@@ -1,0 +1,153 @@
+[
+  {
+    "transcript_id": "meeting_01",
+    "source": "vtt",
+    "attendees": ["Sara Chen", "Marc Dubois", "Léa Martin", "David Okafor"],
+    "expected_decisions": [
+      {
+        "topic_slug": "sprint_cadence",
+        "summary": "Adopted two-week sprint cycles starting Monday the 17th.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Good. Decision: two-week sprints, starting Monday the seventeenth."
+      },
+      {
+        "topic_slug": "feature_priority",
+        "summary": "Auth and user management is the first feature to ship, covering login, logout, RBAC, and Auth0 integration across sprints one and two.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Agreed. Decision: auth and user management is our first feature. Sprints one and two."
+      },
+      {
+        "topic_slug": "standup_schedule",
+        "summary": "Daily standup set at 9:30 AM starting Monday.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Nine-thirty it is. Daily standup, nine-thirty AM, starting Monday. Léa will send the invite."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_02",
+    "source": "vtt",
+    "attendees": ["Sara Chen", "Marc Dubois", "David Okafor"],
+    "absent": ["Léa Martin"],
+    "expected_decisions": [
+      {
+        "topic_slug": "cloud_provider",
+        "summary": "Adopted a single-cloud AWS strategy, explicitly excluding GCP and Azure, with a commitment to revisit only at real scaling constraints.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Good. Decision: we go all-in on AWS. Single-cloud strategy. Marc owns the infrastructure setup."
+      },
+      {
+        "topic_slug": "database_infrastructure",
+        "summary": "Selected Postgres on RDS with multi-AZ HA, automated backups, and point-in-time recovery.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Confirmed then. Decision: Postgres on RDS, multi-AZ, automated backups. Marc owns that setup."
+      },
+      {
+        "topic_slug": "cicd_tooling",
+        "summary": "Adopted GitHub Actions as the CI/CD platform; David owns the initial pipeline setup.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Decision: GitHub Actions for CI/CD. David owns the initial setup."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_03",
+    "source": "vtt",
+    "attendees": ["Marc Dubois", "Léa Martin", "David Okafor"],
+    "absent": ["Sara Chen"],
+    "expected_decisions": [
+      {
+        "topic_slug": "api_style",
+        "summary": "Adopted REST as the API style; GraphQL rejected for the initial platform.",
+        "confidence": "explicit",
+        "verbatim_quote": "Marc Dubois: Decision: REST API. No GraphQL in the initial platform."
+      },
+      {
+        "topic_slug": "api_versioning",
+        "summary": "Adopted /api/v1 URL prefix from the first endpoint, with auto-generated OpenAPI docs.",
+        "confidence": "explicit",
+        "verbatim_quote": "Marc Dubois: Decision: slash-api-slash-v1 prefix from day one. Auto-generated OpenAPI docs."
+      },
+      {
+        "topic_slug": "api_rate_limits",
+        "summary": "Rate limiting set at 100 requests per minute per API key, enforced at the API gateway layer.",
+        "confidence": "explicit",
+        "verbatim_quote": "Marc Dubois: Yes. Add it to the API reference docs. Decision: one hundred requests per minute per API key, enforced at API gateway. David owns the API key management flow."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_04",
+    "source": "vtt",
+    "attendees": ["Sara Chen", "Léa Martin", "David Okafor"],
+    "absent": ["Marc Dubois"],
+    "expected_decisions": [
+      {
+        "topic_slug": "engineering_hiring",
+        "summary": "Decided to hire two senior backend engineers with offers out by end of June and start dates in July.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Agreed. I'll open two senior backend roles this week. Target is offers out by end of June, start dates in July. Decision: two senior backend engineers, hired by end of July."
+      },
+      {
+        "topic_slug": "pm_process",
+        "summary": "PM owns all feature specs with a hard deadline of week three of the current sprint for the following sprint's work; no spec means no sprint commitment.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Decision: Léa owns all feature specs. Due by week three of each sprint for the following sprint's work."
+      },
+      {
+        "topic_slug": "release_process",
+        "summary": "Feature freeze two weeks before launch; only bug fixes after the cutoff; exceptions require CEO sign-off.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Decision: feature freeze two weeks before launch, hard cutoff. Only bug fixes after that. David enforces, no exceptions without my sign-off."
+      }
+    ]
+  },
+  {
+    "transcript_id": "meeting_05",
+    "source": "vtt",
+    "attendees": ["Sara Chen", "Léa Martin", "David Okafor"],
+    "absent": ["Marc Dubois"],
+    "expected_decisions": [
+      {
+        "topic_slug": "cloud_provider",
+        "summary": "Adopted a multi-cloud Kubernetes deployment with AWS EKS as the primary cluster and GCP GKE as the disaster-recovery cluster.",
+        "confidence": "explicit",
+        "verbatim_quote": "David Okafor: Decision: Kubernetes-based multi-cloud deployment, EKS primary, GCP GKE for disaster recovery. David owns the cluster setup. I'll have the first cluster running in the staging environment by end of sprint."
+      },
+      {
+        "topic_slug": "service_mesh",
+        "summary": "Adopted Istio as the service mesh for inter-service traffic, providing mutual TLS, circuit breaking, and observability.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Decision: Istio for inter-service traffic. David owns the initial configuration."
+      },
+      {
+        "topic_slug": "codebase_structure",
+        "summary": "Adopted a monorepo structure managed with Turborepo for shared libraries and build caching.",
+        "confidence": "explicit",
+        "verbatim_quote": "Sara Chen: Agreed. Monorepo with Turborepo for builds. David sets it up before the new hires start. That's all three. Good session."
+      }
+    ]
+  },
+  {
+    "_comment": "Expected contradiction: meeting_02 committed to single-cloud AWS; meeting_05 (Marc absent) reversed to multi-cloud AWS+GCP Kubernetes. Marc was the architect of the original decision and was absent when it was overturned.",
+    "expected_contradictions": [
+      {
+        "topic_slug": "cloud_provider",
+        "decision_a": {
+          "meeting_id": "meeting_02",
+          "decision_id_ref": "cloud_provider",
+          "summary": "Adopted a single-cloud AWS strategy, explicitly excluding GCP and Azure.",
+          "verbatim_quote": "Sara Chen: Good. Decision: we go all-in on AWS. Single-cloud strategy. Marc owns the infrastructure setup."
+        },
+        "decision_b": {
+          "meeting_id": "meeting_05",
+          "decision_id_ref": "cloud_provider",
+          "summary": "Adopted a multi-cloud Kubernetes deployment with AWS EKS as primary and GCP GKE for disaster recovery.",
+          "verbatim_quote": "David Okafor: Decision: Kubernetes-based multi-cloud deployment, EKS primary, GCP GKE for disaster recovery. David owns the cluster setup. I'll have the first cluster running in the staging environment by end of sprint."
+        },
+        "severity": "high",
+        "explanation": "Meeting 02 explicitly committed to single-cloud AWS and rejected multi-cloud. Meeting 05 adopted a multi-cloud strategy adding GCP GKE, directly contradicting the earlier decision. Marc Dubois (CTO), who drove and owned the original single-cloud decision, was absent from meeting 05. The reversal was made without acknowledging or formally overturning the prior commitment."
+      }
+    ]
+  }
+]

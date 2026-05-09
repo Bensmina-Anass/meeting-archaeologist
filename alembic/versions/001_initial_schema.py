@@ -10,6 +10,7 @@ import sqlalchemy as sa
 from alembic import op
 from pgvector.sqlalchemy import Vector
 from sqlalchemy.dialects import postgresql
+from sqlalchemy.dialects.postgresql import ENUM as PgEnum
 
 revision = "001"
 down_revision = None
@@ -20,7 +21,12 @@ depends_on = None
 def upgrade() -> None:
     op.execute("CREATE EXTENSION IF NOT EXISTS vector")
 
-    sa.Enum("explicit", "implied", "tentative", name="confidence_enum").create(op.get_bind())
+    op.execute("""
+        DO $$ BEGIN
+            CREATE TYPE confidence_enum AS ENUM ('explicit', 'implied', 'tentative');
+        EXCEPTION WHEN duplicate_object THEN NULL;
+        END $$
+    """)
 
     op.create_table(
         "topics",
@@ -48,11 +54,7 @@ def upgrade() -> None:
         sa.Column("verbatim_quote", sa.Text(), nullable=False),
         sa.Column(
             "confidence",
-            sa.Enum(
-                "explicit", "implied", "tentative",
-                name="confidence_enum",
-                create_type=False,
-            ),
+            PgEnum("explicit", "implied", "tentative", name="confidence_enum", create_type=False),
             nullable=False,
         ),
         sa.Column("participants", postgresql.ARRAY(sa.String()), nullable=False),

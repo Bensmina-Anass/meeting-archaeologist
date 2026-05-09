@@ -1,0 +1,71 @@
+WEBVTT
+
+NOTE Meeting: API Design Session — 2025-03-24
+NOTE Attendees: Marc Dubois (CTO), Léa Martin (PM), David Okafor (Eng Lead)
+NOTE Sara Chen is not attending today.
+
+00:00:00.000 --> 00:00:09.500
+<v Marc Dubois>Let's lock down the API design questions. Three items: REST versus GraphQL, versioning strategy, and rate limiting.
+
+00:00:58.000 --> 00:01:08.800
+<v Léa Martin>I'll start with GraphQL since I know it comes up. Our enterprise customers want predictable, documented endpoints they can hand to their integration teams.
+
+00:01:55.000 --> 00:02:06.200
+<v Léa Martin>They read OpenAPI specs. GraphQL is a learning curve for them and an unknown for our SDK generation story. I'd lean REST.
+
+00:02:52.000 --> 00:03:03.500
+<v David Okafor>Agreed from the engineering side. GraphQL adds complexity we don't need yet. We have maybe six external integrations on the roadmap — REST handles all of them cleanly.
+
+00:03:48.000 --> 00:03:59.800
+<v Marc Dubois>REST it is. Well-understood, easy to document, easier to cache. We revisit if we hit flexibility problems two or three years out.
+
+00:04:42.000 --> 00:04:51.500
+<v Marc Dubois>Decision: REST API. No GraphQL in the initial platform.
+
+00:05:35.000 --> 00:05:45.800
+<v Léa Martin>Versioning next. Do we prefix from day one or bolt it on later?
+
+00:06:28.000 --> 00:06:40.200
+<v David Okafor>From day one, absolutely. I have seen the pain of retrofitting versioning onto a live API. Customers hate breaking changes and you cannot avoid them without version namespacing.
+
+00:07:22.000 --> 00:07:32.500
+<v Marc Dubois>Agreed. Slash-api-slash-v1 from the first endpoint we ship. Cheap to do now, expensive to fix later.
+
+00:08:15.000 --> 00:08:24.800
+<v Léa Martin>Are we documenting with OpenAPI automatically or manually? I want to make sure customer integrations have good docs.
+
+00:09:08.000 --> 00:09:19.500
+<v Marc Dubois>FastAPI generates it automatically from type annotations. We get Swagger UI and ReDoc for free. That's part of why we chose FastAPI — docs are not a separate effort.
+
+00:10:01.000 --> 00:10:10.800
+<v David Okafor>And we can publish the spec to a public URL for enterprise customers who want to generate their own SDK wrappers.
+
+00:10:52.000 --> 00:11:01.500
+<v Marc Dubois>Decision: slash-api-slash-v1 prefix from day one. Auto-generated OpenAPI docs.
+
+00:11:44.000 --> 00:11:54.800
+<v David Okafor>Rate limiting. What's the default? I need a number to build against before I write the API key management flow.
+
+00:12:37.000 --> 00:12:48.200
+<v Léa Martin>I talked to the sales team last week. Enterprise customers expect at least a hundred calls per minute per API key as a baseline. Anything lower gets flagged in security reviews.
+
+00:13:30.000 --> 00:13:43.500
+<v Marc Dubois>One hundred per minute per API key works. Higher tiers get more. We implement it at the API gateway level, not in FastAPI, so we can change it without a redeploy. AWS API Gateway handles this natively.
+
+00:14:22.000 --> 00:14:32.800
+<v David Okafor>That works. Keeps the rate limit logic out of the application layer entirely. I'll spec the API key management flow this sprint — should be one story.
+
+00:15:15.000 --> 00:15:25.200
+<v Léa Martin>Should we document that rate limiting is enforced at the gateway? Customers are going to ask when they hit a 429.
+
+00:16:08.000 --> 00:16:22.500
+<v Marc Dubois>Yes. Add it to the API reference docs. Decision: one hundred requests per minute per API key, enforced at API gateway. David owns the API key management flow.
+
+00:17:00.000 --> 00:17:08.800
+<v David Okafor>I'll add a clear 429 error body with retry-after header. Makes it easier for customers to handle in their integrations.
+
+00:17:52.000 --> 00:18:02.200
+<v Léa Martin>Good call. I'll draft the rate limit section of the API docs once David has the error format settled.
+
+00:18:45.000 --> 00:18:53.500
+<v Marc Dubois>That's all three. REST, v1 from day one, hundred-per-minute rate limit. Clean session. Sara will get the notes.

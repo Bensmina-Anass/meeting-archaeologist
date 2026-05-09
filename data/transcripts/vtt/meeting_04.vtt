@@ -1,0 +1,80 @@
+WEBVTT
+
+NOTE Meeting: Q3 Planning and Hiring — 2025-04-07
+NOTE Attendees: Sara Chen (CEO), Léa Martin (PM), David Okafor (Eng Lead)
+NOTE Marc Dubois is not attending (offsite conference).
+
+00:00:00.000 --> 00:00:09.500
+<v Sara Chen>Marc is offsite this week, so we'll handle planning without him. He reviewed the agenda and said to proceed.
+
+00:00:58.000 --> 00:01:07.800
+<v Léa Martin>Three topics: hiring targets for Q3, PM process changes, and the launch feature freeze date.
+
+00:01:52.000 --> 00:02:02.500
+<v David Okafor>On hiring — we're at capacity on the backend. Two engineers doing the work of four right now. I've been raising this for six weeks.
+
+00:02:48.000 --> 00:02:57.800
+<v Sara Chen>I know. The funding round closed last week so we finally have budget. What's realistic for Q3?
+
+00:03:42.000 --> 00:03:54.200
+<v David Okafor>Two senior backend engineers. They need to ramp fast — so senior specifically. Someone who can be productive in two weeks, not two months.
+
+00:04:38.000 --> 00:04:51.500
+<v Sara Chen>Agreed. I'll open two senior backend roles this week. Target is offers out by end of June, start dates in July. Decision: two senior backend engineers, hired by end of July.
+
+00:05:32.000 --> 00:05:42.800
+<v Léa Martin>Should we use a recruiting agency or go direct? Our last hire through LinkedIn took four months.
+
+00:06:26.000 --> 00:06:37.200
+<v Sara Chen>Both. Agency for speed, our own network for quality. I'll reach out to three contacts this week who referred good engineers last time.
+
+00:07:20.000 --> 00:07:30.500
+<v David Okafor>On the PM process — Léa, you wanted to change how specs land in the sprint?
+
+00:08:13.000 --> 00:08:25.800
+<v Léa Martin>Yes. Right now I'm writing specs during the same sprint they're being implemented, which means engineers are waiting on me. I need to be one sprint ahead.
+
+00:09:07.000 --> 00:09:20.200
+<v Léa Martin>The change: I own all feature specs, and they have to be written and reviewed by week three of the current sprint for the next sprint's work. No spec, no sprint commitment.
+
+00:10:00.000 --> 00:10:10.500
+<v David Okafor>I love that constraint. No spec, no sprint commitment. That gives us time to push back on scope before we've started coding.
+
+00:10:52.000 --> 00:11:01.800
+<v Sara Chen>Decision: Léa owns all feature specs. Due by week three of each sprint for the following sprint's work.
+
+00:11:45.000 --> 00:11:54.200
+<v Léa Martin>I'll add a spec review step to our sprint planning template. Marc will need to sign off on anything touching the infra layer.
+
+00:12:38.000 --> 00:12:47.500
+<v Sara Chen>Feature freeze. Launch is end of September. When do we cut?
+
+00:13:30.000 --> 00:13:43.800
+<v David Okafor>Two weeks before launch, minimum. We need time for regression testing, performance testing, and at least one week of customer beta. That puts the freeze at mid-September.
+
+00:14:23.000 --> 00:14:35.200
+<v Léa Martin>Mid-September works for product. We have eight customers signed up for early access. They need two weeks of stable builds to give useful feedback.
+
+00:15:15.000 --> 00:15:28.500
+<v Sara Chen>Decision: feature freeze two weeks before launch, hard cutoff. Only bug fixes after that. David enforces, no exceptions without my sign-off.
+
+00:16:08.000 --> 00:16:17.800
+<v David Okafor>Understood. I'll add the freeze date to the project header in Linear so everyone sees it on every sprint board.
+
+00:17:00.000 --> 00:17:10.200
+<v Léa Martin>One housekeeping item: should we schedule a monthly architecture review once the new engineers are on board?
+
+00:17:53.000 --> 00:18:03.500
+<v Sara Chen>Good idea. Let's revisit that once we know who we've hired. Put it on the Q3 retrospective agenda.
+
+00:18:46.000 --> 00:18:55.800
+<v David Okafor>Works for me. I'll also need Marc to walk the new engineers through the AWS setup on day one — should we block time on his calendar now?
+
+00:19:39.000 --> 00:19:48.200
+<v Sara Chen>Yes, I'll ask him to keep a two-hour onboarding block free during the July onboarding week. Good catch.
+
+00:20:32.000 --> 00:20:40.500
+<v Léa Martin>I'll send a summary of today's decisions to Marc so he's not out of the loop.
+
+00:21:25.000 --> 00:21:33.800
+<v Sara Chen>Perfect. Hiring by end of July, specs due week three, feature freeze two weeks out. Good session.

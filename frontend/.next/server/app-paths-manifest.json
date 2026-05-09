@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(sidebar)/contradictions/page": "app/(sidebar)/contradictions/page.js",
+  "/(sidebar)/meetings/page": "app/(sidebar)/meetings/page.js",
+  "/(sidebar)/settings/page": "app/(sidebar)/settings/page.js",
+  "/(sidebar)/topics/[id]/page": "app/(sidebar)/topics/[id]/page.js",
+  "/(sidebar)/meetings/[id]/page": "app/(sidebar)/meetings/[id]/page.js",
+  "/(sidebar)/topics/page": "app/(sidebar)/topics/page.js",
+  "/(calendar)/page": "app/(calendar)/page.js"
+}
